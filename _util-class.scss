@@ -1,0 +1,123 @@
+// Fylgja (getfylgja.com)
+// Licensed under MIT Open Source
+
+/// @require {Mixin} loop-mq - media query loop for responsive options
+/// @param {String} $name - name of util
+/// @param {String} $property - css property
+/// @param {*} $value - css value of property
+/// @param {*} $options - list of single string as options
+/// @return {*} - return css util class
+@mixin build-util-item($name, $property, $value, $options: "auto") {
+    $name-property: $property;
+    $name-value: $name;
+
+    @if (index($options, "value-name") != null) {
+        $name-property: $name;
+    } @else if (index($options, "property-name") != null) {
+        $name-value: $property;
+    } @else if ($property == "background-color") {
+        $name-property: "bg";
+    } @else if ($property == "text-align") {
+        $name-property: "text";
+    }
+
+    $class-name: if(
+        $name-property == $name-value,
+        $name-property,
+        "#{$name-property}-#{$name-value}"
+    );
+
+    $important: if(index($options, "important") != null, "!important", null);
+
+    %util-#{$class-name} {
+        #{$property}: $value#{$important};
+    }
+
+    @if (index($options, "focus") != null) {
+        .focus-#{$class-name}:focus {
+            @extend %util-#{$class-name};
+        }
+    }
+
+    @if (index($options, "hover") != null) {
+        .hover-#{$class-name}:hover {
+            @extend %util-#{$class-name};
+        }
+    }
+
+    @if (index($options, "responsive") != null) {
+        @include loop-mq($class: "#{$class-name}", $use-xs-name: false) {
+            #{$property}: $value#{$important};
+        }
+    } @else {
+        .#{$class-name} {
+            @extend %util-#{$class-name};
+        }
+    }
+}
+
+/// @require {Mixin} build-util-item
+/// @param {Map} $utilities - map to loop trough for util styles
+/// @return {*} - new util classes
+@mixin build-util($utilities) {
+    @each $name, $util in $utilities {
+        $type: type-of($util);
+        $property: $name;
+        $options: "auto";
+
+        @if ($property == "content") {
+            @error "The CSS property content can not be used as an util";
+        }
+
+        @if ($type == list) {
+            @each $value in $util {
+                @if (type-of($value) != string) {
+                    @error "Simple util values must be a string";
+                }
+
+                $name: $value;
+                @include build-util-item($name, $property, $value, $options);
+            }
+        } @else if (type-of($util) == map) {
+            $options: if(
+                map-has-key($util, "options"),
+                map-get($util, "options"),
+                "auto"
+            );
+
+            $map-values: if(
+                map-has-key($util, "values"),
+                map-get($util, "values"),
+                $util
+            );
+
+            @if (type-of($map-values) == map) {
+                @each $custom-name, $value in $map-values {
+                    @include build-util-item(
+                        $custom-name,
+                        $property,
+                        $value,
+                        $options
+                    );
+                }
+            } @else {
+                @each $value in $map-values {
+                    $custom-name: $value;
+                    @include build-util-item(
+                        $custom-name,
+                        $property,
+                        $value,
+                        $options
+                    );
+                }
+            }
+        } @else {
+            @include build-util-item($name, $property, $util, $options);
+        }
+    }
+}
+
+// Only use the builder if the config exists
+@if global-variable-exists(config-utils) {
+    @include build-util($config-utils);
+}

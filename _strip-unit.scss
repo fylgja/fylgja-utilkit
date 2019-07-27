@@ -1,0 +1,12 @@
+// Fylgja (getfylgja.com)
+// Licensed under MIT Open Source
+
+/// @link https://css-tricks.com/snippets/sass/strip-unit-function/
+/// @param {Number} $number - Number to remove unit from
+/// @return {Number} - unitless number
+@function strip-unit($number) {
+    @if (type-of($number) == "number") and not (unitless($number)) {
+        @return $number / ($number * 0 + 1);
+    }
+    @return $number;
+}

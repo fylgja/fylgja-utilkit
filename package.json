@@ -1,0 +1,8 @@
+{
+  "name": "@fylgja/utilkit",
+  "version": "1.0.0",
+  "description": "The UtilKit is a smaller helper package. That contains SCSS mixins and function that can make complex tasks easier.",
+  "keywords": [],
+  "author": "Fylgja",
+  "license": "MIT"
+}

@@ -1,0 +1,43 @@
+// Fylgja (getfylgja.com)
+// Licensed under MIT Open Source
+
+/// Calculate the contrast ratio between two colors.
+/// @require {Function} luminance
+/// @param {Color} $back - color
+/// @param {Color} $front - color to check against
+/// @return {Number} - ratio number
+@function contrast-ratio($back, $front) {
+    $backLum: luminance($back) + .05;
+    $foreLum: luminance($front) + .05;
+    @return max($backLum, $foreLum) / min($backLum, $foreLum);
+}
+
+// 4.5 AA, 7 AAA
+$config-contrast: (
+    min: 4.5,
+    dark: #222,
+    light: #fff
+) !default;
+
+/// @require {Function} contrast-ratio
+/// @require {Variable} config-contrast
+/// @param {Color} $color - color to check contrast against
+/// @param {Color} $dark - dark color to check against
+/// @param {Color} $light - light color to check against
+/// @param {Number} $min - ratio to check against
+/// @return {Color} - return $dark or $light color based on ratio of $color
+@function contrast(
+    $color,
+    $dark: map-get($config-contrast, dark),
+    $light: map-get($config-contrast, light),
+    $min: map-get($config-contrast, min)
+) {
+    $calc-light: contrast-ratio($color, $light);
+    $calc-dark: contrast-ratio($color, $dark);
+
+    @if ($calc-light < $min) and ($calc-dark > $calc-light) {
+        @return $dark;
+    } @else {
+        @return $light;
+    }
+}

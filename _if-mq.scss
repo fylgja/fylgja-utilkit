@@ -1,0 +1,16 @@
+// Fylgja (getfylgja.com)
+// Licensed under MIT Open Source
+
+/// @param {Number} $mq - media query
+/// @param {String} $type - pass custom query, default is min-width
+/// @return {*} - Return content with or without media query
+@mixin if-mq($mq, $type: default) {
+    @if ($mq > 1) or ($type != default) {
+        $query: if($type == default, "min-width: #{$mq}", $type);
+        @media ($query) {
+            @content;
+        }
+    } @else {
+        @content;
+    }
+}

@@ -1,0 +1,42 @@
+// Fylgja (getfylgja.com)
+// Licensed under MIT Open Source
+
+$breakpoints: (
+    xs: 0,
+    sm: 480px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    sl: 1440px
+) !default;
+
+/// @param {String} $class - class to add as suffix
+/// @param {Boolean} $use-xs-name - if the xs mq has an class
+/// @param {Map} $map - breakpoints map to use
+/// @return {*} - css wrapped in an mq
+@mixin loop-mq($class: "", $use-xs-name: true, $map: $breakpoints) {
+    @each $mq-name, $mq in $map {
+        $name: if($class == "", "#{$mq-name}", "#{$mq-name}-#{$class}");
+        @if ($mq == 0) {
+            @if $use-xs-name {
+                .#{$name} {
+                    @content;
+                }
+            } @else {
+                @if ($class == "") {
+                    @content;
+                } @else {
+                    .#{$class} {
+                        @content;
+                    }
+                }
+            }
+        } @else {
+            .#{$name} {
+                @media (min-width: $mq) {
+                    @content;
+                }
+            }
+        }
+    }
+}
