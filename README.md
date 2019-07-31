@@ -29,6 +29,8 @@ So redundant functions like prefixeing CSS are a no go.
     - [Option change name](#option-change-name)
     - [Option states (focus, hover)](#option-states-focus-hover)
     - [Option responsive behavior](#option-responsive-behavior)
+    - [Option important](#option-important)
+    - [Build longhand properties from shorthand](#build-longhand-properties-from-shorthand)
     - [Extending](#extending)
 - [FAQ](#faq)
 
@@ -199,10 +201,15 @@ _[More on that below.](#config-utils)_
 Or via the default bundels which you can enable,
 by setting the following variables to true.
 
-* `enable-utils-base`: Loads text-align, flex, float, margin and padding utils
-* `enable-utils-flex`: Loads only flex utils
-* `enable-utils-spacing`: Loads just margin and padding utils
-* `enable-utils-content`: Loads text-align and float utlis
+* `enable-utils-base`: Loads all 3 below
+* `enable-utils-flex`: Loads flex utils
+* `enable-utils-spacing`: Loads:
+  * margin with media queries
+  * padding with media queries
+* `enable-utils-content`: Loads:
+  * text-align with media queries
+  * float utils with media queries
+  * object-fit
 
 #### Config Utils
 
@@ -249,16 +256,17 @@ The `$config-utils` settings map can do more
 than just the simple examples mentioned before.
 
 For this you need to pass any values in the key `"values"`
-And for any of the options you must use the key `"options"`
 
-```scss
-$config-utils: (
-    "text-align": (
-        "values": ()
-        "options": ()
-    )
-)
-```
+For any of the options you must use the key `"options"`
+and one of the possible options:
+
+* [value-name](#option-change-name)
+* [property-name](#option-change-name)
+* [property-short](#option-change-name)
+* [hover](#option-states-focus-hover)
+* [focus](#option-states-focus-hover)
+* [responsive](#option-responsive-behavior)
+* [important](#option-important)
 
 #### Option change name
 
@@ -296,6 +304,9 @@ But this is only usefull for single valued properties.
 
 E.g. if you only need the wrap from `flex-wrap: wrap;`.
 since writting flex-wrap-wrap feels super weird.
+
+Or if you need to property name super short (one character).
+Use `"property-short"`.
 
 Some properties have automatic name changes, if no option is set.
 We wanted to keep this list small since everyone has diffrent needs and wishes.
@@ -363,15 +374,77 @@ $config-utils: (
 }
 ```
 
-This will create both the default and all values set in the map `$breakpoints`.
+This will create both the default util class
+and all version from the media queries map `$config-util-breakpoints`.
 
-_If no map is set it will use the default map from the loop-mq function_
+_The default map values are the same as `$breakpoints`,_
+_from the loop-mq function_
+
+#### Option important
+
+Have an util that needs to override any style.
+Simple pass the options `"important"`.
+
+```scss
+$config-utils: (
+    "display": (
+        "values": (none),
+        "options": ("important")
+    )
+)
+```
+
+```css
+.display-none {
+    display: none !important;
+}
+```
+
+#### Build longhand properties from shorthand
+
+Altrough can make each css property your self.
+Sometimes it is usefull to output multiple version of the shorthand property.
+
+Just as with the options this requires the values in the key values.
+And each longhand property in `"properties"`.
+
+```scss
+$config-utils: (
+    "padding": (
+        "values": ("1": .5rem,),
+        "properties": ("right", "left", "x")
+    )
+)
+```
+
+```css
+.padding-1 {
+  padding: .5rem;
+}
+
+.padding-right-1 {
+  padding-right: .5rem;
+}
+
+.padding-left-1 {
+  padding-left: .5rem;
+}
+
+.padding-x-1 {
+  padding-right: .5rem;
+  padding-left: .5rem;
+}
+```
+
+> ⚠️ Altrough this makes creating utils super easy.
+> It also creates allot of css.
+> So use with caution!
 
 #### Extending
 
-Each `$config-utils` setting set will also create an extend class.
+Each `$config-utils` setting will also create an extend placeholder.
 
-Which has the same name as the util from the `$config-utils`.
+The extend placeholder has the same name as the util from the `$config-utils`.
 With the prefix util.
 
 This can be used to build classes similar to TailwindCSS's `@apply`.
@@ -391,7 +464,7 @@ This can be used to build classes similar to TailwindCSS's `@apply`.
 
 Yes!
 
-Simple create an issue or PR.
+Simple create an issue or PR with the why.
 
 </details>
 
