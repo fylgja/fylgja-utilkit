@@ -17,8 +17,10 @@
         $name-value: $property;
     } @else if ($property == "background-color") {
         $name-property: "bg";
-    } @else if ($property == "text-align") {
+    } @else if ($property == "text-align") or ($property == "text-decoration") {
         $name-property: "text";
+    } @else if ($property == "object-fit") or ($property == "object-position") {
+        $name-property: "object";
     }
 
     $class-name: if(
