@@ -1,0 +1,128 @@
+$enable-utils-base: false !default;
+$enable-utils-flex: false !default;
+$enable-utils-spacing: false !default;
+$enable-utils-content: false !default;
+
+$config-utils: () !default;
+
+@if $enable-utils-flex or $enable-utils-base {
+    $config-utils-flex: (
+        "display": (
+            "values": flex,
+            "options": "value-name"
+        ),
+        "flex-wrap": (
+            "values": wrap,
+            "options": "property-name"
+        ),
+        "flex-direction": (
+            "values": (
+                "flex-column": column
+            ),
+            "options": "value-name"
+        ),
+        "flex-grow": 1,
+        "flex-shrink": 1,
+        "align-items": (
+            "values": (
+                "flex-block-start": flex-start,
+                "flex-block-center": center,
+                "flex-block-end": flex-end
+            ),
+            "options": "value-name"
+        ),
+        "justify-content": (
+            "values": (
+                "flex-inline-start": flex-start,
+                "flex-inline-center": center,
+                "flex-inline-end": flex-end
+            ),
+            "options": "value-name"
+        )
+    );
+
+    %util-flex-center {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .flex-center {
+        @extend %util-flex-center;
+    }
+
+    $config-utils: map-merge($config-utils, $config-utils-flex);
+}
+
+@if $enable-utils-spacing or $enable-utils-base {
+    $config-utils-spacing: (
+        "margin": (
+            "values": (
+                "auto": auto,
+                "0": 0,
+                "1": .25rem,
+                "2": .5rem,
+                "3": 1rem
+            ),
+            "options": (
+                "property-short",
+                "responsive"
+            ),
+            "properties": (
+                "top",
+                "right",
+                "bottom",
+                "left",
+                "x",
+                "y"
+            )
+        ),
+        "padding": (
+            "values": (
+                "0": 0,
+                "1": .25rem,
+                "2": .5rem,
+                "3": 1rem
+            ),
+            "options": (
+                "property-short",
+                "responsive"
+            ),
+            "properties": (
+                "top",
+                "right",
+                "bottom",
+                "left",
+                "x",
+                "y"
+            )
+        )
+    );
+
+    $config-utils: map-merge($config-utils, $config-utils-spacing);
+}
+
+@if $enable-utils-content or $enable-utils-base {
+    $config-utils-content: (
+        "float": (
+            "values": (
+                right,
+                left
+            ),
+            "options": "responsive"
+        ),
+        "text-align": (
+            "values": (
+                center,
+                right,
+                left
+            ),
+            "options": "responsive"
+        ),
+        "object-fit": (
+            cover,
+            contain
+        )
+    );
+
+    $config-utils: map-merge($config-utils, $config-utils-content);
+}

@@ -1,0 +1,135 @@
+// Fylgja (getfylgja.com)
+// Licensed under MIT Open Source
+
+$config-util-breakpoints: $breakpoints !default;
+
+/// @require {Mixin} loop-mq - media query loop for responsive options
+/// @param {String} $name - name of util
+/// @param {String} $property - css property
+/// @param {*} $value - css value of property
+/// @param {*} $options - list of single string as options
+/// @return {*} - return css util class
+@mixin build-util-item(
+    $name,
+    $property,
+    $value,
+    $options: "auto",
+    $properties: null
+) {
+    $name-property: $property;
+    $name-value: $name;
+
+    @if (index($options, "value-name") != null) {
+        $name-property: $name;
+    } @else if (index($options, "property-name") != null) {
+        $name-value: $property;
+    } @else if (index($options, "property-short") != null) {
+        $name-property: str-slice($property, 1, 1);
+    } @else if ($property == "background-color") {
+        $name-property: "bg";
+    } @else if ($property == "text-align") or ($property == "text-decoration") {
+        $name-property: "text";
+    } @else if ($property == "object-fit") or ($property == "object-position") {
+        $name-property: "object";
+    }
+
+    $class-name: if(
+        $name-property == $name-value,
+        $name-property,
+        "#{$name-property}-#{$name-value}"
+    );
+
+    $important: if(index($options, "important") != null, "!important", null);
+
+    %util-#{$class-name} {
+        #{$property}: $value#{$important};
+    }
+
+    @if (index($options, "focus") != null) {
+        .focus-#{$class-name}:focus {
+            @extend %util-#{$class-name};
+        }
+    }
+
+    @if (index($options, "hover") != null) {
+        .hover-#{$class-name}:hover {
+            @extend %util-#{$class-name};
+        }
+    }
+
+    @if ($properties != null) {
+        @each $prop in $properties {
+            $prop-name: if(
+                index($options, "property-short") != null,
+                str-slice($prop, 1, 1),
+                $prop
+            );
+
+            $prop-class: if(
+                index($options, "property-short") != null,
+                #{$name-property}#{$prop-name}-#{$name-value},
+                #{$name-property}-#{$prop-name}-#{$name-value}
+            );
+
+            %util-#{$prop-class} {
+                @if ($prop == "x") {
+                    #{$property}-right: $value#{$important};
+                    #{$property}-left: $value#{$important};
+                } @else if ($prop == "y") {
+                    #{$property}-top: $value#{$important};
+                    #{$property}-bottom: $value#{$important};
+                } @else {
+                    #{$property}-#{$prop}: $value#{$important};
+                }
+            }
+
+            @if (index($options, "focus") != null) {
+                .focus-#{$prop-class}:focus {
+                    @extend %util-#{$prop-class};
+                }
+            }
+
+            @if (index($options, "hover") != null) {
+                .hover-#{$prop-class}:hover {
+                    @extend %util-#{$prop-class};
+                }
+            }
+
+            @if (index($options, "responsive") != null) {
+                @include loop-mq(
+                    $class: "#{$prop-class}",
+                    $use-xs-name: false,
+                    $map: $config-util-breakpoints
+                ) {
+                    @if ($prop == "x") {
+                        #{$property}-right: $value#{$important};
+                        #{$property}-left: $value#{$important};
+                    } @else if ($prop == "y") {
+                        #{$property}-top: $value#{$important};
+                        #{$property}-bottom: $value#{$important};
+                    } @else {
+                        #{$property}-#{$prop}: $value#{$important};
+                    }
+                }
+            } @else {
+                .#{$prop-class} {
+                    @extend %util-#{$prop-class};
+                }
+            }
+        }
+    }
+
+    @if (index($options, "responsive") != null) {
+        @include loop-mq(
+            $class: "#{$class-name}",
+            $use-xs-name: false,
+            $map: $config-util-breakpoints
+        ) {
+            #{$property}: $value#{$important};
+        }
+    } @else {
+        .#{$class-name} {
+            @extend %util-#{$class-name};
+        }
+    }
+}

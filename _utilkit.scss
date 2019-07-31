@@ -1,22 +1,14 @@
-// String
+// Utils
 @import "str-replace";
-
-// Unit
 @import "strip-unit";
-
-// Color
 @import "luminace";
 @import "contrast";
-
-// Map
 @import "map-deep-get";
-
-// Import
 @import "encode-svg";
-
-// MQ (Media Query)
 @import "if-mq";
 @import "loop-mq";
 
-// Builders
+// Util class
+@import "util-class-config"; // default config options
+@import "util-class-item";
 @import "util-class";
