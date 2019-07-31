@@ -11,9 +11,9 @@ So redundant functions like prefixeing CSS are a no go.
 
 <details><summary>Table of Contents</summary>
 
-- [Installation](#Installation)
-- [How to use](#How-to-use)
-  - [Utils Functions](#Utils-Functions)
+- [Installation](#installation)
+- [How to use](#how-to-use)
+  - [Utils Functions](#utils-functions)
     - [str-replace](#str-replace)
     - [strip-unit](#strip-unit)
     - [luminance](#luminance)
@@ -23,7 +23,14 @@ So redundant functions like prefixeing CSS are a no go.
     - [encode-svg](#encode-svg)
     - [if-mq](#if-mq)
     - [loop-mq](#loop-mq)
-  - [Utils Classes](#Utils-Classes)
+  - [Utils Classes](#utils-classes)
+    - [Config Utils](#config-utils)
+    - [Options intro](#options-intro)
+    - [Option change name](#option-change-name)
+    - [Option states (focus, hover)](#option-states-focus-hover)
+    - [Option responsive behavior](#option-responsive-behavior)
+    - [Extending](#extending)
+- [FAQ](#faq)
 
 </details>
 
@@ -60,8 +67,6 @@ Replace value in string
 
 Strips the unit from a number.
 
-The opposite of the native function [`unit()`](https://sass-lang.com/documentation/functions/math#unit)
-
 ```scss
 @debug strip-unit(1337px);
 // output = 1337
@@ -80,7 +85,7 @@ Return the luminance value of the color.
 
 Return the contrast ratio value of the color.
 
-Used as helper for the contrast function.
+_Used as helper for the contrast function._
 
 ```scss
 @debug contrast-ratio(#03a9f4, #222);
@@ -147,14 +152,12 @@ Usefull for sass functions and mixins.
 
 #### loop-mq
 
-Loop through breakpoint map to generate css classes based on the default passed.
+Loop through `$breakpoints` map to generate css classes based on the content passed.
 
 ```scss
-.float {
-    @include loop-mq {
-        &-left {
-            float: left;
-        }
+@include loop-mq {
+    &-float-start {
+        float: start;
     }
 }
 ```
@@ -162,31 +165,250 @@ Loop through breakpoint map to generate css classes based on the default passed.
 Output: 
 
 ```css
-.float-left {
-    float: left;
+.float-start {
+    float: start;
 }
 
 @media (min-width: 480px) {
-    .float-sm-left {
-        float: left;
-    }
-}
-
-@media (min-width: 768px) {
-    .float-md-left {
-        float: left;
+    .sm-float-start {
+        float: start;
     }
 }
 ```
 
-`loop-mq` accepts 2 params:
+`loop-mq` accepts the following params:
 
-* `$part-of`: if the class the mq class is part of the parent class
+* `$class` pass class directly to mixin
+  * default is empty,
+    and normally classes can be nested inside,
+    but it is usefull with `$use-xs-name` set to false
+* `$use-xs-name`: if the xs value is also added as class name
   * default is true
-* `$map`: map the loop trough
-  * default is $breakpoints.
+* `$part-of`: make mq of loop part of parent class
+  * default is false
+* `$map`: map to loop trough
+  * default is `$breakpoints`.
 
 ### Utils Classes
 
-By default the utilkit will not genarate 
+By default the utilkit will not genarate any css utilities.
 
+These can be made via the `$config-utils` settings.
+_[More on that below.](#config-utils)_
+
+Or via the default bundels which you can enable,
+by setting the following variables to true.
+
+* `enable-utils-base`: Loads text-align, flex, float, margin and padding utils
+* `enable-utils-flex`: Loads only flex utils
+* `enable-utils-spacing`: Loads just margin and padding utils
+* `enable-utils-content`: Loads text-align and float utlis
+
+#### Config Utils
+
+But if you need more control.
+You can make your own util classes via the `$config-utils` settings.
+This is a simple as writing a css property class.
+
+**Example:**
+
+```scss
+$config-utils: (
+    "display": (block, none),
+    "text-align": right
+)
+```
+
+```css
+.display-block {
+    display: block;
+}
+
+.display-block {
+    display: block;
+}
+
+.text-align-right {
+    display: block;
+}
+```
+
+If you need value that can not be a class name use a value key.
+
+```scss
+$config-utils: (
+    "width": (
+        "50": 50%
+    )
+)
+```
+
+#### Options intro
+
+The `$config-utils` settings map can do more
+than just the simple examples mentioned before.
+
+For this you need to pass any values in the key `"values"`
+And for any of the options you must use the key `"options"`
+
+```scss
+$config-utils: (
+    "text-align": (
+        "values": ()
+        "options": ()
+    )
+)
+```
+
+#### Option change name
+
+If you don't like the output name.
+For example with text-align.
+
+Than add the key `"options"` to the property key.
+And add the option `"value-name"`.
+This will only use the value key as name for the class.
+
+```scss
+$config-utils: (
+    "text-align": (
+        "values": (
+            "text-right": right,
+            "text-left": left,
+        )
+        "options": ("value-name")
+    )
+)
+```
+
+```css
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+```
+
+You also reverse this behavior to use only the `"property-name"`.
+But this is only usefull for single valued properties.
+
+E.g. if you only need the wrap from `flex-wrap: wrap;`.
+since writting flex-wrap-wrap feels super weird.
+
+Some properties have automatic name changes, if no option is set.
+We wanted to keep this list small since everyone has diffrent needs and wishes.
+
+* background-color = bg
+* text-align = text
+* text-decoration = text
+* object-fit = object
+* object-position = object
+
+_Values with the same name will not conflit._
+_Since there css values are diffrent from the other property_
+
+To override this default behavior
+simpley use the `"value-name"` as mention above.
+
+#### Option states (focus, hover)
+
+Need focus or hover states.
+Simple pass them as an option like this:
+
+```scss
+$config-utils: (
+    "color": (
+        "values": (
+            "badass-blue": #1976d2
+        ),
+        "options": ("hover")
+    )
+)
+```
+
+```css
+.color-badass-blue,
+.hover-color-badass-blue:hover {
+    color: #1976d2;
+}
+```
+
+This will create both the default and hover state.
+
+#### Option responsive behavior
+
+Need responsive behavior for your util class.
+Simple pass the options `"responsive"`.
+
+```scss
+$config-utils: (
+    "text-align": (
+        "values": (right, left),
+        "options": ("responsive")
+    )
+)
+```
+
+```css
+.text-align-right {
+    text-align: right;
+}
+
+@media (min-width: 768px) {
+    .md-text-align-right {
+        text-align: right;
+    }
+}
+```
+
+This will create both the default and all values set in the map `$breakpoints`.
+
+_If no map is set it will use the default map from the loop-mq function_
+
+#### Extending
+
+Each `$config-utils` setting set will also create an extend class.
+
+Which has the same name as the util from the `$config-utils`.
+With the prefix util.
+
+This can be used to build classes similar to TailwindCSS's `@apply`.
+
+```scss
+.card {
+    @extend %util-border-default;
+    @extend %util-radius-1;
+    @extend %util-bg-white;
+    @extend %util-p-6;
+}
+```
+
+## FAQ
+
+<details><summary>Can I add more automatic names to the Util class</summary>
+
+Yes!
+
+Simple create an issue or PR.
+
+</details>
+
+<details><summary>Why use Util class Extends</summary>
+
+The extend option is and option and nothing more.
+
+We don't support the use of `@extend`.
+But for some cases this could make sense.
+
+</details>
+
+<details><summary>Why not TailwindCSS instead the Util class</summary>
+
+Util class is an SCSS helper so.
+
+If you already using SCSS this is easier to add to your project.
+Also Util class does not load anything if you don't specifically set it.
+
+</details>
