@@ -1,16 +1,16 @@
 {
   "name": "@fylgja/utilkit",
-  "version": "1.0.1",
-  "description": "The UtilKit is a smaller helper package. That contains SCSS mixins and function that can make complex tasks easier.",
+  "version": "1.0.0",
+  "description": "The UtilKit is a small helper package. That contains SCSS mixins and function that can make complex tasks easier.",
   "homepage": "https://getfylgja.com/",
   "author": "Fylgja",
   "license": "MIT",
   "keywords": [
     "fylgja",
-    "scss",
-    "function",
-    "mixin",
-    "css-utilities"
+    "scss-functions",
+    "scss-mixins",
+    "css-utilities",
+    "utility-classes"
   ],
   "repository": {
     "type": "git",

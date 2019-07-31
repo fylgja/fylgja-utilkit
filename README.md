@@ -1,10 +1,10 @@
-# Fylgja UtilKit 🛠
+# Fylgja UtilKit
 
 [![NPM version](https://img.shields.io/npm/v/@fylgja/utilkit.svg)](https://www.npmjs.org/package/@fylgja/utilkit)
 
-The UtilKit is an helper package.
-And contains sass functions and mixins.
-Which makes some complex tasks easier.
+The UtilKit is a small helper package. that can make complex tasks easier.
+
+By offering scss functions, mixins and a utility-class builder.
 
 And only has an focus on extending native sass functions.
 So redundant functions like prefixeing CSS are a no go.
