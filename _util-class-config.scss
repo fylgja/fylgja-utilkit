@@ -22,7 +22,7 @@ $config-utils: () !default;
             "options": "value-name"
         ),
         "flex-grow": 1,
-        "flex-shrink": 1,
+        "flex-shrink": 0,
         "align-items": (
             "values": (
                 "flex-block-start": flex-start,
