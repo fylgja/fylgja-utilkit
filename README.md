@@ -236,7 +236,7 @@ $config-utils: (
 }
 
 .text-align-right {
-    display: block;
+    text-align: right;
 }
 ```
 
