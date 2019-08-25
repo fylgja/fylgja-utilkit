@@ -1,6 +1,8 @@
 // Fylgja (getfylgja.com)
 // Licensed under MIT Open Source
 
+@import "helper";
+
 /// @require {Mixin} build-util-item
 /// @param {Map} $utilities - map to loop trough for util styles
 /// @return {*} - new util classes
@@ -71,6 +73,6 @@
     }
 }
 
-$config-utils: () !default;
+$config-utilkit: () !default;
 
-@include build-util($config-utils);
+@include build-util($config-utilkit);

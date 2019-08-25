@@ -27,7 +27,11 @@ $config-util-breakpoints: $breakpoints !default;
         $name-property: str-slice($property, 1, 1);
     } @else if ($property == "background-color") {
         $name-property: "bg";
-    } @else if ($property == "text-align") or ($property == "text-decoration") {
+    } @else if
+        ($property == "text-align") or
+        ($property == "text-decoration") or
+        ($property == "text-transform")
+    {
         $name-property: "text";
     } @else if ($property == "object-fit") or ($property == "object-position") {
         $name-property: "object";
