@@ -36,7 +36,7 @@ Include the utilkit package in to your code via;
 Or just the utilkit classes, via;
 
 ```css
-@import "@fylgja/utilkit/flex-grid.css";
+@import "@fylgja/utilkit/utilkit.css";
 ```
 
 There is allot to cover.
