@@ -234,29 +234,11 @@ and also want to add your own via the builder.
 Then there are some things you need take note of.
 
 Since the builder uses nested maps.
-Your new value will not be added if there is already an property that you want to add to.
+Your new value will not be added.
+If there is already an property that you want to add to.
 
 To change this unset the default part in the `$enable-utilkit` var.
-Or remove the key via [map-remove](https://sass-lang.com/documentation/functions/map#map-remove)
-
-**Example**
-
-We want to use the display properties.
-But don't want the responsive option.
-
-```scss
-$new-config: (
-    "display": (
-        "values": (none, block),
-        "options": ("property-short")
-    )
-);
-
-// First remove the old one
-$config-utils: map-remove($config-utils, "display");
-// Add the new one
-$config-utils: map-merge($config-utils, $new-config);
-```
+Or change the config related to that default, e.g. `$config-utilkit-display`.
 
 ## Create classes from utils
 
