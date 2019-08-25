@@ -1,0 +1,18 @@
+$config-utilkit-width: (
+    "width": (
+        "values": (
+            "auto": auto,
+            "0": 0,
+            "25": 25%,
+            "33": #{(100% / 3)},
+            "50": 50%,
+            "66": #{(100% / 3 * 2)},
+            "75": 75%,
+            "100": 100%
+        ),
+        "options": (
+            "property-short",
+            "responsive"
+        )
+    )
+) !default;

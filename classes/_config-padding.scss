@@ -1,0 +1,22 @@
+$config-utilkit-padding: (
+    "padding": (
+        "values": (
+            "0": 0,
+            "1": 0.5em,
+            "2": 1em,
+            "3": 1.5em,
+            "4": 2em
+        ),
+        "options": (
+            "property-short"
+        ),
+        "properties": (
+            "top",
+            "right",
+            "bottom",
+            "left",
+            "x",
+            "y"
+        )
+    )
+) !default;

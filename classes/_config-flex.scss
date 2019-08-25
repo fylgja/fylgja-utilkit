@@ -1,0 +1,80 @@
+$config-utilkit-flex: (
+    "flex-direction": (
+        "values": (
+            "flex-row": row,
+            "flex-column": column
+        ),
+        "options": (
+            "value-name",
+            "responsive"
+        )
+    ),
+    "justify-content": (
+        "values": (
+            "justify-start": flex-start,
+            "justify-center": center,
+            "justify-end": flex-end,
+            "justify-between": space-between,
+            "justify-around": space-around
+        ),
+        "options": (
+            "value-name",
+            "responsive"
+        )
+    ),
+    "align-items": (
+        "values": (
+            "items-start": flex-start,
+            "items-center": center,
+            "items-end": flex-end,
+            "items-baseline": baseline,
+            "items-stretch": stretch
+        ),
+        "options": (
+            "value-name",
+            "responsive"
+        )
+    ),
+    "align-self": (
+        "values": (
+            "self-start": flex-start,
+            "self-center": center,
+            "self-end": flex-end,
+            "self-baseline": baseline,
+            "self-stretch": stretch
+        ),
+        "options": (
+            "value-name",
+            "responsive"
+        )
+    ),
+    "flex-grow": (
+        "values": (
+            0,
+            1
+        ),
+        "options": (
+            "responsive"
+        )
+    ),
+    "flex-shrink": (
+        "values": (
+            0,
+            1
+        ),
+        "options": (
+            "responsive"
+        )
+    ),
+    "flex-wrap": (
+        "values": (
+            "flex-nowrap": nowrap,
+            "flex-wrap": wrap,
+            "flex-wrap-reverse": wrap-reverse
+        ),
+        "options": (
+            "value-name",
+            "responsive"
+        )
+    )
+) !default;

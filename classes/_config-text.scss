@@ -1,0 +1,27 @@
+$config-utilkit-text: (
+    "text-align": (
+        "values": (
+            right,
+            left,
+            center
+        ),
+        "options": (
+            "responsive"
+        )
+    ),
+    "text-transform": (
+        "values": (
+            uppercase,
+            lowercase,
+            capitalize
+        )
+    ),
+    "white-space": (
+        "values": (
+            "text-nowrap": nowrap
+        ),
+        "options": (
+            "value-name"
+        )
+    )
+) !default;

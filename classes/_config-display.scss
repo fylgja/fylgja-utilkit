@@ -1,0 +1,15 @@
+$config-utilkit-display: (
+    "display": (
+        "values": (
+            none,
+            block,
+            inline-block,
+            flex,
+            inline-flex
+        ),
+        "options": (
+            "property-short",
+            "responsive"
+        )
+    )
+) !default;
