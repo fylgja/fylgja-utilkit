@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.0.0 - (2019-08-30)
+## 2.0.0 - (2019-08-31)
 * IMP:
   * Rebuild folder structure for easier management
   * Split doc in parts for each util
