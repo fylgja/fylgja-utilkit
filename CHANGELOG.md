@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.0.2 - (2019-09-08)
+* FIX: importer loading all even if only text is set
+
 ## 2.0.1 - (2019-08-31)
 * FIX: allow imports for older sass versions
   * will dropped in the future (https://github.com/sass/node-sass/issues/2111)
