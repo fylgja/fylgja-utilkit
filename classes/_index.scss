@@ -1,53 +1,53 @@
-$enable-utilkit: true !default;
+$utilkit-import: all !default;
 $config-utilkit: () !default; // default config
 
 // Defaults to load
 $utilkit-importer: () !default;
 @import "config-display";
-@if ($enable-utilkit == true) or (index($enable-utilkit, "display") != null) {
+@if ($utilkit-import == all) or (index($utilkit-import, "display") != null) {
     $utilkit-importer: map-merge($utilkit-importer, $config-utilkit-display);
 }
 
 @import "config-flex";
-@if ($enable-utilkit == true) or (index($enable-utilkit, "flex") != null) {
+@if ($utilkit-import == all) or (index($utilkit-import, "flex") != null) {
     $utilkit-importer: map-merge($utilkit-importer, $config-utilkit-flex);
 }
 
 @import "config-float";
-@if ($enable-utilkit == true) or (index($enable-utilkit, "float") != null) {
+@if ($utilkit-import == all) or (index($utilkit-import, "float") != null) {
     $utilkit-importer: map-merge($utilkit-importer, $config-utilkit-float);
 }
 
 @import "config-text";
-@if ($enable-utilkit == true) or (index($enable-utilkit, "text") != null) {
+@if ($utilkit-import == all) or (index($utilkit-import, "text") != null) {
     $utilkit-importer: map-merge($utilkit-importer, $config-utilkit-text);
 }
 
 @import "config-object";
-@if ($enable-utilkit == true) or (index($enable-utilkit, "object") != null) {
+@if ($utilkit-import == all) or (index($utilkit-import, "object") != null) {
     $utilkit-importer: map-merge($utilkit-importer, $config-utilkit-object);
 }
 
 @import "config-table";
-@if ($enable-utilkit == true) or (index($enable-utilkit, "table") != null) {
+@if ($utilkit-import == all) or (index($utilkit-import, "table") != null) {
     $utilkit-importer: map-merge($utilkit-importer, $config-utilkit-table);
 }
 
 @import "config-width";
-@if ($enable-utilkit == true) or (index($enable-utilkit, "width") != null) {
+@if ($utilkit-import == all) or (index($utilkit-import, "width") != null) {
     $utilkit-importer: map-merge($utilkit-importer, $config-utilkit-width);
 }
 
 @import "config-margin";
-@if ($enable-utilkit == true) or (index($enable-utilkit, "margin") != null) {
+@if ($utilkit-import == all) or (index($utilkit-import, "margin") != null) {
     $utilkit-importer: map-merge($utilkit-importer, $config-utilkit-margin);
 }
 
 @import "config-padding";
-@if ($enable-utilkit == true) or (index($enable-utilkit, "padding") != null) {
+@if ($utilkit-import == all) or (index($utilkit-import, "padding") != null) {
     $utilkit-importer: map-merge($utilkit-importer, $config-utilkit-padding);
 }
 
-@if ($enable-utilkit != false) {
+@if ($utilkit-import != none) {
     $config-utilkit: map-merge($config-utilkit, $utilkit-importer);
 }
