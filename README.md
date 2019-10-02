@@ -14,7 +14,6 @@ And utility-class builder that is super small compared to other utility class fr
 - [How to use](#how-to-use)
   - [Functions](#functions)
   - [Util classes](#util-classes)
-  - [Util classes builder](#util-classes-builder)
 
 </details>
 
@@ -51,13 +50,20 @@ And has some helper mixins to easily build `@media` based styles.
 
 ### Util classes
 
-This contains the documentation on what is in the box by default.
-And how to use these CSS classes.
+The utilkit comes with super strong util class builder and some good defaults.
 
-[Check it out here →](classes/README.md)
+To use these classes first include the `build-util` mixin.
 
-### Util classes builder
+It is best to load this last after all other css.
+This will allows it to override most styles without using an important.
 
-How to use build your own **util classes**, via the builder.
+By just calling the `build-util` mixin will also load the default config.
+[More on what you are loading and how to configure it here →](classes/README.md)
 
-[Check it out here →](class-builder/README.md)
+If you want more control on what you are loading.
+
+First set the `$utilkit-import` to none.
+
+Second (if not allready done) call the build-util mixin.
+
+And third add your settings to it as found on the [class builder readmore →](class-builder/README.md)

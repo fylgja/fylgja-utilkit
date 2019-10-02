@@ -237,7 +237,7 @@ Since the builder uses nested maps.
 Your new value will not be added.
 If there is already an property that you want to add to.
 
-To change this unset the default part in the `$enable-utilkit` var.
+To change this unset the default part in the `$utilkit-import` var.
 Or change the config related to that default, e.g. `$config-utilkit-display`.
 
 ## Create classes from utils
@@ -245,7 +245,7 @@ Or change the config related to that default, e.g. `$config-utilkit-display`.
 Each `$config-utils` setting will also create an extend placeholder.
 
 The extend placeholder has the same name as the util from the `$config-utils`.
-With the prefix util.
+With the prefix `util`.
 
 This can be used to build classes similar to TailwindCSS's `@apply`.
 

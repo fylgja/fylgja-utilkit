@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.1.0 - (2019-10-02)
+* IMP:
+  * allow loading of each util pack separately.
+  * Don't load classes until called via `build-util`
+
 ## 2.0.2 - (2019-09-08)
 * FIX: importer loading all even if only text is set
 

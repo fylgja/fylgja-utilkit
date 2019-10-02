@@ -2,6 +2,7 @@
 // Licensed under MIT Open Source
 
 $config-util-breakpoints: $breakpoints !default;
+$config-utilkit: () !default;
 
 /// @require {Mixin} loop-mq - media query loop for responsive options
 /// @param {String} $name - name of util

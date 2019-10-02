@@ -22,13 +22,13 @@ And can be enable separately if needed.
 
 By default the utilkit will load the default util classes.
 
-Setting this value to `false` will disable any default classes.
+Setting this `$utilkit-import` to `none` will disable any default classes.
 
-Or if you only need parts pass them as an list to the `$enable-utilkit` var.
+Or if you only need parts pass them as an list to the `$utilkit-import` var.
 
 ```scss
 // Example: just text and media
-$enable-utilkit: ("text", "media");
+$utilkit-import: ("text", "media");
 ```
 
 > [For overriding defaults, checkout the class builder doc](../class-builder/README.md#overriding-default-classes).
