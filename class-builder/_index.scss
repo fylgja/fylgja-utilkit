@@ -3,15 +3,21 @@
 
 @import "helper";
 
-/// @require {Mixin} build-util-item
+$config-utilkit: () !default;
+$config-util-breakpoints: $breakpoints !default;
+
+/// Helper mixin,
+/// So we don't have to repeat the if checking for the mq version.
+/// @require {Mixin} build-util-item - from helper
+/// @require {Mixin} build-util-mq-item - from mq-helper
 /// @param {Map} $utilities - map to loop trough for util styles
 /// @return {*} - new util classes
-@mixin build-util($utilities: $config-utilkit) {
+@mixin build-util-helper($utilities, $build-mq: false) {
     @each $name, $util in $utilities {
-        $type: type-of($util);
-        $property: $name;
-        $options: "auto";
-        $properties: null;
+        $type: type-of($util); // check what kind of config this is
+        $property: $name; // use the key(name) as property
+        $options: "auto"; // set default option value
+        $properties: null; // set default properties value
 
         @if ($property == "content") {
             @error "The CSS property content can not be used as an util";
@@ -24,7 +30,12 @@
                 }
 
                 $name: $value;
-                @include build-util-item($name, $property, $value);
+                @include build-util-item(
+                    $name: $name,
+                    $property: $property,
+                    $value: $value,
+                    $build-mq: $build-mq
+                );
             }
         } @else if (type-of($util) == map) {
             $map-values: if(
@@ -48,27 +59,47 @@
             @if (type-of($map-values) == map) {
                 @each $custom-name, $value in $map-values {
                     @include build-util-item(
-                        $custom-name,
-                        $property,
-                        $value,
-                        $options,
-                        $properties
+                        $name: $custom-name,
+                        $property: $property,
+                        $value: $value,
+                        $options: $options,
+                        $properties: $properties,
+                        $build-mq: $build-mq
                     );
                 }
             } @else {
                 @each $value in $map-values {
                     $custom-name: $value;
                     @include build-util-item(
-                        $custom-name,
-                        $property,
-                        $value,
-                        $options,
-                        $properties
+                        $name: $custom-name,
+                        $property: $property,
+                        $value: $value,
+                        $options: $options,
+                        $properties: $properties,
+                        $build-mq: $build-mq
                     );
                 }
             }
         } @else {
-            @include build-util-item($name, $property, $util);
+            @include build-util-item(
+                $name: $name,
+                $property: $property,
+                $value: $value,
+                $build-mq: $build-mq
+            );
         }
+    }
+}
+
+/// Build-util is the wrapper for each of it's tasks
+/// @require {Mixin} build-util-helper - if checker
+/// @require {Mixin} build-util-mq-item - from mq-helper
+/// @param {Map} $utilities - map to loop trough for util styles
+/// @return {*} - new util classes
+@mixin build-util($utilities: $config-utilkit) {
+    @include build-util-helper($utilities);
+
+    @include loop-mq($use-xs: false, $map: $config-util-breakpoints) {
+        @include build-util-helper($utilities, $build-mq: true);
     }
 }
