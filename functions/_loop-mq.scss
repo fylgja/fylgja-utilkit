@@ -10,11 +10,14 @@ $breakpoints: (
 ) !default;
 
 /// @param {String} $class - class to add as suffix
+/// @param {Boolean} $use-xs - if the xs values should be returned
 /// @param {Boolean} $use-xs-name - if the xs mq has an class
+/// @param {Boolean} $part-of - if the class name should be part of the parrent
 /// @param {Map} $map - breakpoints map to use
 /// @return {*} - css wrapped in an mq
 @mixin loop-mq(
     $class: "",
+    $use-xs: true,
     $use-xs-name: true,
     $part-of: false,
     $map: $breakpoints
@@ -22,17 +25,20 @@ $breakpoints: (
     @each $mq-name, $mq in $map {
         $name: if($class == "", "#{$mq-name}", "#{$mq-name}-#{$class}");
         $part: if($part-of, "&-", ".");
+
         @if ($mq == 0) {
-            @if $use-xs-name {
-                #{$part}#{$name} {
-                    @content;
-                }
-            } @else {
-                @if ($class == "") {
-                    @content;
-                } @else {
-                    #{$part}#{$class} {
+            @if ($use-xs) {
+                @if ($use-xs-name) {
+                    #{$part}#{$name} {
                         @content;
+                    }
+                } @else {
+                    @if ($class == "") {
+                        @content;
+                    } @else {
+                        #{$part}#{$class} {
+                            @content;
+                        }
                     }
                 }
             }
