@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.0 - (2019-12-06)
+* FIX: `@media` classes overriding util classes, [Issue#1](https://github.com/fylgja/fylgja-utilkit/issues/1)
+* IMP: `loop-mq()` function can now exclude **xs** styles
+
 ## 2.1.0 - (2019-10-02)
 * IMP:
   * allow loading of each util pack separately.
