@@ -22,6 +22,7 @@
     "utility-classes"
   ],
   "scripts": {
+    "dev": "sass utilkit.scss utilkit.css --watch",
     "build": "sass utilkit.scss utilkit.css --no-source-map -s compressed"
   }
 }
