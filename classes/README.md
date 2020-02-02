@@ -43,9 +43,9 @@ $utilkit-import: ("text", "media");
 
 | Class           | Value                  |
 | --------------- | ---------------------- |
-| text-uppercase  | text-align: uppercase  |
-| text-lowercase  | text-align: lowercase  |
-| text-capitalize | text-align: capitalize |
+| text-uppercase  | text-transform: uppercase  |
+| text-lowercase  | text-transform: lowercase  |
+| text-capitalize | text-transform: capitalize |
 
 | Class       | Value               |
 | ----------- | ------------------- |
