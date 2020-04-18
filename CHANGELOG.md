@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.3.0 - (2020-04-18)
+* IMP: move docs to wiki
+* ADD:
+  * function map-deep-merge
+  * option to quickly set the important value to the properties,
+    display margin and padding
+
 ## 2.2.0 - (2019-12-06)
 * FIX: `@media` classes overriding util classes, [Issue#1](https://github.com/fylgja/fylgja-utilkit/issues/1)
 * IMP: `loop-mq()` function can now exclude **xs** styles
