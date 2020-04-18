@@ -1,4 +1,9 @@
+// Fylgja (getfylgja.com)
+// Licensed under MIT Open Source
+
 $utilkit-import: all !default;
+// *1 Sets important on the properties that could have issues with frameworks
+$enable-utilkit-important: false !default; // *1
 $config-utilkit: () !default; // default config
 
 // Defaults to load

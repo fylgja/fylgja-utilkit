@@ -1,3 +1,14 @@
+// Fylgja (getfylgja.com)
+// Licensed under MIT Open Source
+
+// *1 Sets important on the properties that could have issues with frameworks
+$enable-utilkit-important: false !default; // *1
+$config-utilkit-margin-options: if(
+    $enable-utilkit-important,
+    ("property-short", "important"),
+    ("property-short")
+) !default;
+
 $config-utilkit-margin: (
     "margin": (
         "values": (
@@ -6,18 +17,16 @@ $config-utilkit-margin: (
             "1": 0.5em,
             "2": 1em,
             "3": 1.5em,
-            "4": 2em
+            "4": 2em,
         ),
-        "options": (
-            "property-short"
-        ),
+        "options": $config-utilkit-margin-options,
         "properties": (
             "top",
             "right",
             "bottom",
             "left",
             "x",
-            "y"
-        )
-    )
+            "y",
+        ),
+    ),
 ) !default;

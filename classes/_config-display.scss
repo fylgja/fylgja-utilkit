@@ -1,3 +1,14 @@
+// Fylgja (getfylgja.com)
+// Licensed under MIT Open Source
+
+// *1 Sets important on the properties that could have issues with frameworks
+$enable-utilkit-important: false !default; // *1
+$config-utilkit-display-options: if(
+    $enable-utilkit-important,
+    ("property-short", "responsive", "important"),
+    ("property-short", "responsive")
+) !default;
+
 $config-utilkit-display: (
     "display": (
         "values": (
@@ -5,11 +16,8 @@ $config-utilkit-display: (
             block,
             inline-block,
             flex,
-            inline-flex
+            inline-flex,
         ),
-        "options": (
-            "property-short",
-            "responsive"
-        )
-    )
+        "options": $config-utilkit-display-options,
+    ),
 ) !default;
