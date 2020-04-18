@@ -46,7 +46,7 @@ So each section is split in it is own file.
 This contains SCSS functions that extend on base SCSS function like an `str-replace` or an `encode-svg`.
 And has some helper mixins to easily build `@media` based styles.
 
-[For more on what each function/mixin does, Check it out here →](functions/README.md)
+[For more on what each function/mixin does, Check it out here →](https://github.com/fylgja/fylgja-utilkit/wiki/Functions)
 
 ### Util classes
 
@@ -58,7 +58,7 @@ It is best to load this last after all other css.
 This will allows it to override most styles without using an important.
 
 By just calling the `build-util` mixin will also load the default config.
-[More on what you are loading and how to configure it here →](classes/README.md)
+[More on what you are loading and how to configure it here →](https://github.com/fylgja/fylgja-utilkit/wiki/Default-Classes)
 
 If you want more control on what you are loading.
 
@@ -66,4 +66,4 @@ First set the `$utilkit-import` to none.
 
 Second (if not allready done) call the build-util mixin.
 
-And third add your settings to it as found on the [class builder readmore →](class-builder/README.md)
+And third add your settings to it as found on the [class builder readmore →](https://github.com/fylgja/fylgja-utilkit/wiki/Class-Builder)
