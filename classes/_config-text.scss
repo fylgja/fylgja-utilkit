@@ -1,27 +1,30 @@
+// Fylgja (getfylgja.com)
+// Licensed under MIT Open Source
+
 $config-utilkit-text: (
     "text-align": (
         "values": (
             right,
             left,
-            center
+            center,
         ),
         "options": (
-            "responsive"
-        )
+            "responsive",
+        ),
     ),
     "text-transform": (
         "values": (
             uppercase,
             lowercase,
-            capitalize
-        )
+            capitalize,
+        ),
     ),
     "white-space": (
         "values": (
-            "text-nowrap": nowrap
+            "text-nowrap": nowrap,
         ),
         "options": (
-            "value-name"
-        )
-    )
+            "value-name",
+        ),
+    ),
 ) !default;

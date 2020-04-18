@@ -1,3 +1,6 @@
+// Fylgja (getfylgja.com)
+// Licensed under MIT Open Source
+
 $config-utilkit-width: (
     "width": (
         "values": (
@@ -8,11 +11,11 @@ $config-utilkit-width: (
             "50": 50%,
             "66": #{(100% / 3 * 2)},
             "75": 75%,
-            "100": 100%
+            "100": 100%,
         ),
         "options": (
             "property-short",
-            "responsive"
-        )
-    )
+            "responsive",
+        ),
+    ),
 ) !default;

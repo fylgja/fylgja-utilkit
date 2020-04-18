@@ -1,11 +1,14 @@
+// Fylgja (getfylgja.com)
+// Licensed under MIT Open Source
+
 $config-utilkit-table: (
     "table-layout": (
         "values": (
             "table-auto": auto,
-            "table-fixed": fixed
+            "table-fixed": fixed,
         ),
         "options": (
-            "value-name"
-        )
-    )
+            "value-name",
+        ),
+    ),
 ) !default;

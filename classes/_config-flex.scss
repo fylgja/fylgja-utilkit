@@ -1,13 +1,16 @@
+// Fylgja (getfylgja.com)
+// Licensed under MIT Open Source
+
 $config-utilkit-flex: (
     "flex-direction": (
         "values": (
             "flex-row": row,
-            "flex-column": column
+            "flex-column": column,
         ),
         "options": (
             "value-name",
-            "responsive"
-        )
+            "responsive",
+        ),
     ),
     "justify-content": (
         "values": (
@@ -15,12 +18,12 @@ $config-utilkit-flex: (
             "justify-center": center,
             "justify-end": flex-end,
             "justify-between": space-between,
-            "justify-around": space-around
+            "justify-around": space-around,
         ),
         "options": (
             "value-name",
-            "responsive"
-        )
+            "responsive",
+        ),
     ),
     "align-items": (
         "values": (
@@ -28,12 +31,12 @@ $config-utilkit-flex: (
             "items-center": center,
             "items-end": flex-end,
             "items-baseline": baseline,
-            "items-stretch": stretch
+            "items-stretch": stretch,
         ),
         "options": (
             "value-name",
-            "responsive"
-        )
+            "responsive",
+        ),
     ),
     "align-self": (
         "values": (
@@ -41,40 +44,40 @@ $config-utilkit-flex: (
             "self-center": center,
             "self-end": flex-end,
             "self-baseline": baseline,
-            "self-stretch": stretch
+            "self-stretch": stretch,
         ),
         "options": (
             "value-name",
-            "responsive"
-        )
+            "responsive",
+        ),
     ),
     "flex-grow": (
         "values": (
             0,
-            1
+            1,
         ),
         "options": (
-            "responsive"
-        )
+            "responsive",
+        ),
     ),
     "flex-shrink": (
         "values": (
             0,
-            1
+            1,
         ),
         "options": (
-            "responsive"
-        )
+            "responsive",
+        ),
     ),
     "flex-wrap": (
         "values": (
             "flex-nowrap": nowrap,
             "flex-wrap": wrap,
-            "flex-wrap-reverse": wrap-reverse
+            "flex-wrap-reverse": wrap-reverse,
         ),
         "options": (
             "value-name",
-            "responsive"
-        )
-    )
+            "responsive",
+        ),
+    ),
 ) !default;

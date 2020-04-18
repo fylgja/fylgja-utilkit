@@ -1,6 +1,7 @@
 // Fylgja (getfylgja.com)
 // Licensed under MIT Open Source
 
+/// Get value from nested map
 /// @param {Map} $map - top level map
 /// @param {Arglist} $keys... - map keys
 /// @return Desired value from map

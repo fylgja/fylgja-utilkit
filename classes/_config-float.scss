@@ -1,11 +1,14 @@
+// Fylgja (getfylgja.com)
+// Licensed under MIT Open Source
+
 $config-utilkit-float: (
     "float": (
         "values": (
             right,
-            left
+            left,
         ),
         "options": (
-            "responsive"
-        )
-    )
+            "responsive",
+        ),
+    ),
 ) !default;

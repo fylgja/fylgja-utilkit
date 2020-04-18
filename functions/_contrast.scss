@@ -7,8 +7,8 @@
 /// @param {Color} $front - color to check against
 /// @return {Number} - ratio number
 @function contrast-ratio($back, $front) {
-    $backLum: luminance($back) + .05;
-    $foreLum: luminance($front) + .05;
+    $backLum: luminance($back) + 0.05;
+    $foreLum: luminance($front) + 0.05;
     @return max($backLum, $foreLum) / min($backLum, $foreLum);
 }
 
@@ -16,7 +16,7 @@
 $config-contrast: (
     min: 4.5,
     dark: #222,
-    light: #fff
+    light: #fff,
 ) !default;
 
 /// @require {Function} contrast-ratio
