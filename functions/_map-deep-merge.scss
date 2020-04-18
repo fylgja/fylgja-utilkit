@@ -1,0 +1,32 @@
+// Fylgja (getfylgja.com)
+// Licensed under MIT Open Source
+
+/// Merge 2 maps together to make a new map
+/// @param {Map} $map - original map
+/// @param {Map} $new-map - new map
+/// @param {Boolean} $overwrite [true] - values from new map override old map
+/// @return {Map} - New map
+@function map-deep-merge($map, $new-map, $overwrite: true) {
+    @each $key, $new-value in $new-map {
+        @if map-has-key($map, $key) {
+            $old-value: map-get($map, $key);
+            // If both are maps, continue merging, regardless of $overwrite
+            @if type-of($new-value) == map and type-of($old-value) == map {
+                $merged-value: map-deep-merge($old-value, $new-value);
+                /* prettier-ignore */
+                $map: map-merge($map, ($key: $merged-value));
+            } @else {
+                // Otherwise check $overwrite
+                @if $overwrite {
+                    /* prettier-ignore */
+                    $map: map-merge($map, ($key: $new-value));
+                }
+            }
+        } @else {
+            // There is no existing key so add
+            /* prettier-ignore */
+            $map: map-merge($map, ($key: $new-value));
+        }
+    }
+    @return $map;
+}
