@@ -4,7 +4,7 @@
 /// Get value from nested map
 /// @param {Map} $map - top level map
 /// @param {Arglist} $keys... - map keys
-/// @return Desired value from map
+/// @return {Mixed} Desired value from map
 @function map-deep-get($map, $keys...) {
     @each $key in $keys {
         $map: map-get($map, $key);

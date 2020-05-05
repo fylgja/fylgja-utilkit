@@ -3,7 +3,7 @@
 
 /// @param {Number} $mq - media query
 /// @param {String} $type - pass custom query, default is min-width
-/// @return {*} - Return content with or without media query
+/// @return {Mixed} - Return content with or without media query
 @mixin if-mq($mq, $feature: "min-width") {
     @if ($mq > 1) {
         $query: "#{$feature}: #{$mq}";
