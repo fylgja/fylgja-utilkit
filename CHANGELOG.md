@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.4.0 - (2020-07-18)
+* IMP: SASSDoc return statements
+* ADD: nth-side function
+
 ## 2.3.0 - (2020-04-18)
 * IMP: move docs to wiki
 * ADD:
