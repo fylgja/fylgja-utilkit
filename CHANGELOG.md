@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.5.0 - (2020-07-24)
+* FIX: contrast issue with native function, by renaming it to `contrast-color`.
+  Headsup this will break any project using the old name.
+
 ## 2.4.0 - (2020-07-18)
 * IMP: SASSDoc return statements
 * ADD: nth-side function

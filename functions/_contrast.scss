@@ -26,7 +26,7 @@ $config-contrast: (
 /// @param {Color} $light - light color to check against
 /// @param {Number} $min - ratio to check against
 /// @return {Color} - return $dark or $light color based on ratio of $color
-@function contrast(
+@function contrast-color(
     $color,
     $dark: map-get($config-contrast, dark),
     $light: map-get($config-contrast, light),
