@@ -1,3 +1,9 @@
+> :warning: This package has been deprecated
+> 
+> @fylgja/utilkit has been replace and split in to 2 new packages,
+> for the sass functions see @fylgja/sass
+> and for CSS utility classes see @fylgja/utilpack
+
 # Fylgja UtilKit
 
 [![NPM version](https://img.shields.io/npm/v/@fylgja/utilkit.svg)](https://www.npmjs.org/package/@fylgja/utilkit)
