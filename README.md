@@ -1,8 +1,8 @@
 > :warning: This package has been deprecated
 > 
-> @fylgja/utilkit has been replace and split in to 2 new packages,
-> for the sass functions see @fylgja/sass
-> and for CSS utility classes see @fylgja/utilpack
+> @fylgja/utilkit has been replaced and split in to 2 new packages,
+> for the sass functions see [@fylgja/sass](https://github.com/fylgja/fylgja-sass)
+> and for CSS utility classes see [@fylgja/utilpack](https://github.com/fylgja/fylgja/tree/main/components/utilpack)
 
 # Fylgja UtilKit
 
